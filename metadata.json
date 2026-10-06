@@ -1,0 +1,6 @@
+{
+  "name": "SolarStock - Solar Energy Products Catalog & Infrastructure Platform",
+  "description": "Premium B2B/B2C solar energy products catalog, inverters, energy storage systems, solar panels, and material handling equipment.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
