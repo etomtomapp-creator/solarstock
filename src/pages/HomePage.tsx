@@ -35,6 +35,7 @@ import {
   SolarCellCutawayGraphic,
   RegionalLogisticsMapGraphic
 } from '../components/GraphicsGallery';
+import { HeroBackgroundGraphic } from '../components/HeroBackgroundGraphic';
 import { GraphicType } from '../components/VisualDiagramModal';
 import { Product } from '../types';
 
@@ -73,9 +74,12 @@ export const HomePage: React.FC<HomePageProps> = ({
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
 
-      {/* 1. HOMEPAGE HERO SECTION WITH SPLIT-SCREEN INDUSTRIAL GRAPHIC */}
+      {/* 1. HOMEPAGE HERO SECTION WITH SPLIT-SCREEN INDUSTRIAL GRAPHIC & PREMIUM AMBIENT BACKDROP */}
       <section className="relative bg-slate-950 text-white overflow-hidden py-16 sm:py-24 border-b border-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        {/* Premium Vector Energy Infrastructure Graphic Background */}
+        <HeroBackgroundGraphic />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 relative z-10">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             

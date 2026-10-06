@@ -40,7 +40,7 @@ export const ScrollToTop: React.FC = () => {
   return (
     <button
       onClick={scrollToTop}
-      className="fixed bottom-6 right-6 z-40 p-2.5 rounded-full bg-slate-950/90 text-white shadow-xl border border-slate-800 backdrop-blur-md hover:bg-slate-900 hover:scale-110 active:scale-95 transition-all duration-300 group flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+      className="fixed bottom-24 right-6 z-40 p-2.5 rounded-full bg-slate-950/90 text-white shadow-xl border border-slate-800 backdrop-blur-md hover:bg-slate-900 hover:scale-110 active:scale-95 transition-all duration-300 group flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
       aria-label="Scroll to top of page"
       title="Back to top"
     >

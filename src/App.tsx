@@ -10,6 +10,7 @@ import { PartnerDashboardModal } from './components/PartnerDashboardModal';
 import { VisualDiagramModal, GraphicType } from './components/VisualDiagramModal';
 import { ScrollToTop } from './components/ScrollToTop';
 import { ScrollProgressBar } from './components/ScrollProgressBar';
+import { LiveChatWidget } from './components/LiveChatWidget';
 
 import { HomePage } from './pages/HomePage';
 import { ProductsPage } from './pages/ProductsPage';
@@ -233,6 +234,13 @@ export default function App() {
 
       {/* Smooth Scroll To Top Floating Indicator */}
       <ScrollToTop />
+
+      {/* Demo Live Engineering Support Chat Floating Widget */}
+      <LiveChatWidget
+        onOpenQuote={() => handleOpenQuote()}
+        onOpenSizing={() => setSizingModalOpen(true)}
+        onNavigateToProducts={() => navigateTo('products')}
+      />
 
       {/* Side-by-Side Equipment Comparison Floating Dock */}
       <CompareDrawer
