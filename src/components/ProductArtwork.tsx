@@ -7,7 +7,7 @@ interface ProductArtworkProps {
   size?: 'sm' | 'md' | 'lg' | 'detail';
 }
 
-export const ProductArtwork: React.FC<ProductArtworkProps> = ({
+const ProductArtworkComponent: React.FC<ProductArtworkProps> = ({
   product,
   className = '',
   size = 'md'
@@ -615,3 +615,5 @@ export const ProductArtwork: React.FC<ProductArtworkProps> = ({
     </div>
   );
 };
+
+export const ProductArtwork = React.memo(ProductArtworkComponent);

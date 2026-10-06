@@ -25,11 +25,27 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [isScrolled, setIsScrolled] = useState(false);
 
   React.useEffect(() => {
+    let ticking = false;
+    let prevScrolled = false;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 15);
+      const scrolled = (window.scrollY || document.documentElement.scrollTop) > 15;
+      if (scrolled !== prevScrolled) {
+        prevScrolled = scrolled;
+        setIsScrolled(scrolled);
+      }
+      ticking = false;
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(handleScroll);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const navLinks = [

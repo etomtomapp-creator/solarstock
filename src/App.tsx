@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { QuoteModal } from './components/QuoteModal';
@@ -48,13 +48,13 @@ export default function App() {
   const [diagramModalOpen, setDiagramModalOpen] = useState(false);
   const [targetGraphic, setTargetGraphic] = useState<GraphicType>('utility-scale');
 
-  const handleOpenDiagram = (graphic?: GraphicType) => {
+  const handleOpenDiagram = useCallback((graphic?: GraphicType) => {
     if (graphic) setTargetGraphic(graphic);
     setDiagramModalOpen(true);
-  };
+  }, []);
 
-  // Scroll to top on page navigation
-  const navigateTo = (
+  // Instant scroll to top on page navigation for zero-latency feel
+  const navigateTo = useCallback((
     page: string,
     params?: { category?: string; brand?: string; productId?: string }
   ) => {
@@ -63,7 +63,7 @@ export default function App() {
       if (found) {
         setSelectedProduct(found);
         setCurrentPage('product-detail');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'instant' });
         return;
       }
     }
@@ -80,57 +80,56 @@ export default function App() {
     }
 
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, []);
 
-  const handleSelectProduct = (product: Product) => {
+  const handleSelectProduct = useCallback((product: Product) => {
     setSelectedProduct(product);
     setCurrentPage('product-detail');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, []);
 
-  const handleOpenQuote = (product?: Product) => {
+  const handleOpenQuote = useCallback((product?: Product) => {
     setTargetQuoteProduct(product || selectedProduct || null);
     setQuoteModalOpen(true);
-  };
+  }, [selectedProduct]);
 
-  const handleOpenDatasheet = (product: Product) => {
+  const handleOpenDatasheet = useCallback((product: Product) => {
     setDatasheetProduct(product);
     setDatasheetModalOpen(true);
-  };
+  }, []);
 
-  const handleLoginSuccess = (email: string) => {
+  const handleLoginSuccess = useCallback((email: string) => {
     setUserEmail(email);
     setPartnerDashboardOpen(true);
-  };
+  }, []);
 
-  const handleToggleCompare = (product: Product) => {
+  const handleToggleCompare = useCallback((product: Product) => {
     setCompareList(prev => {
       const exists = prev.some(p => p.id === product.id);
       if (exists) {
         return prev.filter(p => p.id !== product.id);
       }
       if (prev.length >= 4) {
-        alert('You can compare up to 4 models simultaneously.');
         return prev;
       }
       return [...prev, product];
     });
-  };
+  }, []);
 
-  const handleRemoveCompare = (productId: string) => {
+  const handleRemoveCompare = useCallback((productId: string) => {
     setCompareList(prev => prev.filter(p => p.id !== productId));
-  };
+  }, []);
 
-  const handleClearCompare = () => {
+  const handleClearCompare = useCallback(() => {
     setCompareList([]);
-  };
+  }, []);
 
-  const handleOpenQuoteWithBOM = (bomNotes: string) => {
+  const handleOpenQuoteWithBOM = useCallback((bomNotes: string) => {
     setSizingModalOpen(false);
     setTargetQuoteProduct(null);
     setQuoteModalOpen(true);
-  };
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-emerald-500 selection:text-white relative">

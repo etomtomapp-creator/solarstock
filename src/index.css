@@ -25,12 +25,30 @@
     letter-spacing: -0.02em;
   }
 
-  /* Universal smooth transition for interactive controls */
+  /* Universal instant-response & smooth transition for interactive controls */
   button, a, input, select, textarea {
+    touch-action: manipulation;
     transition-property: color, background-color, border-color, box-shadow, transform, opacity;
     transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-    transition-duration: 220ms;
+    transition-duration: 180ms;
   }
+
+  svg {
+    shape-rendering: geometricPrecision;
+    text-rendering: geometricPrecision;
+  }
+}
+
+/* GPU Hardware Acceleration & Layout Containment Utilities */
+.gpu-layer {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 400px;
 }
 
 /* Custom smooth transitions and clean utility styles */
